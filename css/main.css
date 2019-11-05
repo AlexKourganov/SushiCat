@@ -5,7 +5,11 @@ html,
 body {
     font-family: 'Roboto', sans-serif;
     color: rgba(224, 219, 219, 0.705);
-    background: url(../img/gallerybg.jpeg)center/cover fixed no-repeat;
+    background: url(../img/gallerybg.jpg)center/cover fixed no-repeat;
+    /* overflow-x: hidden; */
+}
+body{
+    overflow-x: hidden;
 }
 
 .cursive {
@@ -24,6 +28,9 @@ body {
 .secondary-color {
     color: rgb(252, 33, 153);
 }
+.white-color{
+    color: #fff;
+}
 
 .info h2 {
     word-spacing: 0.6rem;
@@ -38,14 +45,18 @@ body {
     color: rgb(253, 197, 10);
 }
 
+
+
 /* Header Section */
 #header {
+    
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/headerbg.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     min-height: calc(100vh - 108px);
     position: relative;
+    
 }
 
 .height-90 {
@@ -125,6 +136,7 @@ body {
     /* for zoom in so it wont overflow the container */
     background: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
     transition: all 2s ease;
+    border-radius: 0.25rem;
 }
 
 .item-container:hover .item-image {
@@ -181,6 +193,18 @@ body {
     right: 10%;
     background: #d3325f;
     padding: 0 0.4rem;
+}
+.menu-btn{
+    font-size: 2.5rem !important;
+    margin: 20px 30px;
+    color: rgb(177, 180, 180)!important;
+}
+.menu-btn:hover{
+  color: rgb(252, 33, 153)!important;
+}
+.active-btn{
+    color: rgb(255, 255, 255) !important;
+  
 }
 
 /* About Section */
@@ -270,11 +294,7 @@ body {
     transform: translateY(-5px);
 }
 
-#team img {
-    /* height: 250px; */
 
-
-}
 
 #team .card {
     border: none;
@@ -329,7 +349,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background: #c9c1ac;
+    background: rgb(224, 219, 219);
     padding: 20px 20px;
     margin-top: -1px;
     transition: all 1s ease;
@@ -353,7 +373,7 @@ body {
     color: #242424;
     text-decoration: none;
     transition: all 0.5s ease;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .nav-link:hover {
@@ -435,6 +455,13 @@ body {
 .yelp {
     color: #D32323;
 }
+/* Modal */
+#modal-title{
+    font-size: 2rem;
+}
+.modal-text{
+    font-size: 1.5rem;
+}
 
 /* Loader */
 .loader{
@@ -512,6 +539,30 @@ body {
         transform: translateX(0px);
         opacity: 1;
     }
+}
+/* Sliders CSS */
+.fade-in{
+    opacity: 0;
+    transition: opacity 1000ms ease-in;
+}
+.fade-in.appear{
+    opacity: 1;
+}
+.from-left{
+    
+transform: translateX(-80%);
+}
+.from-right{
+    
+transform: translateX(80%);
+}
+.from-left,.from-right{
+    transition: opacity 500ms ease-in, transform 1000ms ease-in;
+    opacity: 0;
+}
+.from-left.appear,.from-right.appear{
+    transform: translateX(0);
+    opacity: 1;
 }
 
 /* Bounce */

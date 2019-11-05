@@ -1,0 +1,28 @@
+{
+  "name": "Sushi_Bar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russiandobby/SushiCat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/russiandobby/SushiCat/issues"
+  },
+  "homepage": "https://github.com/russiandobby/SushiCat#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "postcss-modules": "^1.4.1",
+    "postcss-uncss": "^0.17.0",
+    "uncss": "^0.17.2"
+  }
+}
