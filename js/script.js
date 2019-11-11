@@ -1,3 +1,104 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const options = {
+      root:null,// its the viewport
+      threshold: 0, //if 1 then 100% of item needs to be on the page
+      rootMargin: "-50px" 
+  };
+      var lazyImages =[].slice.call(
+       document.querySelectorAll("img.lazy")
+      )
+      
+      if ("IntersectionObserver" in window) {
+         let lazyImageObserver = 
+           new IntersectionObserver((entries, observer) => {
+             entries.forEach(function(entry) {
+               if (entry.isIntersecting) {
+                 let lazyImage = entry.target;
+                 lazyImage.src = lazyImage.dataset.src;
+                 lazyImage.srcset = lazyImage.dataset.srcset;
+                 lazyImage.classList.remove("lazy");
+                 lazyImage.classList.add("appear");
+                 lazyImageObserver.unobserve(lazyImage);
+                 
+               }
+             });
+           },options);
+     
+         lazyImages.forEach(function(lazyImage) {
+           lazyImageObserver.observe(lazyImage);
+         });
+       } else {
+         // Possibly fall back to a more compatible method here
+       }
+     });
+    //lazy load backgrounds  
+    document.addEventListener("DOMContentLoaded", function() {
+        const options2 = {
+          root:null,// its the viewport
+          threshold: 0, //if 1 then 100% of item needs to be on the page
+          rootMargin: "500px"  //heigher the number further away it will load
+      };
+        var lazyloadImages;    
+      
+        if ("IntersectionObserver" in window) {
+          lazyloadImages = document.querySelectorAll(".lazy2");
+          var imageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                var image = entry.target;
+                image.classList.remove("lazy2");
+                imageObserver.unobserve(image);
+              }
+            });
+          },options2);
+      
+          lazyloadImages.forEach(function(image) {
+            imageObserver.observe(image);
+          });
+        } else {  
+          var lazyloadThrottleTimeout;
+          lazyloadImages = document.querySelectorAll(".lazy2");
+          
+          function lazyload () {
+            if(lazyloadThrottleTimeout) {
+              clearTimeout(lazyloadThrottleTimeout);
+            }    
+      
+            lazyloadThrottleTimeout = setTimeout(function() {
+              var scrollTop = window.pageYOffset;
+              lazyloadImages.forEach(function(img) {
+                  if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy2');
+                  }
+              });
+              if(lazyloadImages.length == 0) { 
+                document.removeEventListener("scroll", lazyload);
+                window.removeEventListener("resize", lazyload);
+                window.removeEventListener("orientationChange", lazyload);
+              }
+            }, 20);
+          }
+      
+          document.addEventListener("scroll", lazyload);
+          window.addEventListener("resize", lazyload);
+          window.addEventListener("orientationChange", lazyload);
+        }
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $(document).ready(function () {
     // navbar toggle
     $('.navbar-toggler').click(function(){
@@ -59,73 +160,7 @@ $(document).ready(function () {
     });
 });
 
-// LAZY LOAD
-const images = document.querySelectorAll("[data-src]");
 
-const imgOptions ={
-    threshold: 0,
-    rootMargin:"0px 0px 300px 0px"
-};
-const appearOptions ={
-    threshold: 0,
-    rootMargin:"0px 0px -200px 0px"
-};
-
-
-
-
-// 
-function preloadImage(img){
-   const src = img.getAttribute("data-src");
-   if(!src){
-       return;
-   }
-   img.src = src;
-}
-
-const imgObserver = new IntersectionObserver((entries,imgObserver)=>{
-entries.forEach(entry => {
-    if(!entry.isIntersecting){
-        return;
-    }else{
-        preloadImage(entry.target);
-        imgObserver.unobserve(entry.target);
-    }
-})
-},imgOptions);
-
-images.forEach(image => {
-    imgObserver.observe(image);
-});
-// 
-// Slide ins and Fadeins observers
-
-
-
-const faders = document.querySelectorAll('.fade-in');
-const sliders = document.querySelectorAll('.slide-in');
-
-const appearOnScroll = new IntersectionObserver((entries,appearOnScroll)=>{
-    entries.forEach(entry => {
-        if(!entry.isIntersecting){
-            return;
-        }else{
-            console.log(' i am working!');
-          entry.target.classList.add("appear");
-          appearOnScroll.unobserve(entry.target);
-        }
-    });
-    },appearOptions);
-    
-    faders.forEach(fader => {
-        appearOnScroll.observe(fader);
-    });
-    // Slide in Options
-    sliders.forEach(slider => {
-        appearOnScroll.observe(slider);
-    });
-
-// 
 
 document.getElementById('menu-button').addEventListener("click", RespondClick); 
 document.getElementById('alcohol-button').addEventListener("click", RespondClick2); 

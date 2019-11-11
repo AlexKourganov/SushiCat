@@ -44,6 +44,20 @@ body{
 .info a:hover {
     color: rgb(253, 197, 10);
 }
+/* Lazy load */
+#menu.lazy2{
+    background-image: none;
+     background-color: #F1F1FA;
+  }
+.fade-in{
+    opacity: 0;
+    
+    transition: all 750ms ease-in;
+}
+.fade-in.appear{
+   
+    opacity: 1;
+}
 
 
 
@@ -348,6 +362,7 @@ body{
 }
 
 /* Navbar */
+
 .navbar {
     background: rgb(224, 219, 219);
     padding: 20px 20px;
@@ -540,30 +555,11 @@ body{
         opacity: 1;
     }
 }
-/* Sliders CSS */
-.fade-in{
-    opacity: 0;
-    transition: opacity 1000ms ease-in;
-}
-.fade-in.appear{
-    opacity: 1;
-}
-.from-left{
-    
-transform: translateX(-80%);
-}
-.from-right{
-    
-transform: translateX(80%);
-}
-.from-left,.from-right{
-    transition: opacity 500ms ease-in, transform 1000ms ease-in;
-    opacity: 0;
-}
-.from-left.appear,.from-right.appear{
-    transform: translateX(0);
-    opacity: 1;
-}
+
+
+
+
+
 
 /* Bounce */
 @keyframes fromBottom {
