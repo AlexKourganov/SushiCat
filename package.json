@@ -21,7 +21,7 @@
     "jquery": "^3.5.0"
   },
   "devDependencies": {
-    "postcss-modules": "^1.4.1",
+    "postcss-modules": "^1.5.0",
     "postcss-uncss": "^0.17.0",
     "uncss": "^0.17.2"
   }
